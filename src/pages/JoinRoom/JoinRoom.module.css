@@ -1,0 +1,47 @@
+.header {
+  font-size: 80px;
+  font-family: 'VT323', sans-serif;
+}
+.input {
+  width: 95%;
+  min-width: 150px;
+  height: 50px;
+  overflow-y: auto;
+  font-size: 20px;
+  padding: 5px;
+  background: transparent;
+  border: 5px double #fff;
+  border-radius: 10px;
+  margin-top: 10px;
+  color: #fff;
+}
+
+.input:focus {
+  outline: none !important;
+}
+
+.main {
+  min-height: 100vh;
+  background: radial-gradient(ellipse, #1b2735 0%, #090a0f 100%);
+}
+
+.img {
+  width: 250px;
+  height: 50px;
+  min-width: 150px;
+  min-height: 30px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 35px;
+  background: transparent;
+  width: 90vw;
+  margin: 10px auto;
+  max-width: 550px;
+  margin-top: 50px;
+  border-radius: 20px;
+  border: 5px double #fff;
+}

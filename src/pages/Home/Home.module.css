@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 90vh;
+  gap: 5vh;
+}
+.header {
+  font-size: 80px;
+  font-family: 'VT323', sans-serif;
+  margin-bottom: 5vh;
+}
