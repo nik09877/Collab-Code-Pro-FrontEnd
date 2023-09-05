@@ -12,6 +12,7 @@ const App = () => {
       <Route path='home' element={<Home />} />
       <Route path='join-room' element={<JoinRoom />} />
       <Route path='code-editor/:roomId' element={<CodeEditorPage />} />
+      {/*<Route path='contest/:roomId' element={<CodeEditorPage />} /> */}
     </Routes>
   );
 };

@@ -53,10 +53,10 @@ export const toolsSlice = createSlice({
       state.output_error = action.payload;
     },
     showGraph: (state, action) => {
-      state.showGraph = action.payload;
+      state.showGraph = true;
     },
     hideGraph: (state, action) => {
-      state.showGraph = action.payload;
+      state.showGraph = false;
     },
     setCode: (state, action) => {
       state.code = action.payload;

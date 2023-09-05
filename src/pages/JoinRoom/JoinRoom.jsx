@@ -104,7 +104,7 @@ const JoinRoom = () => {
               minWidth: '120px',
               transform: `translateX(${'-5%'})`,
             }}
-            disabled={userName == '' || roomId == ''}
+            disabled={userName === '' || roomId === ''}
             onClick={handleJoinRoom}
           >
             Join / Create

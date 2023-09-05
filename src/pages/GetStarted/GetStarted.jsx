@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Stars from '../../components/Stars/Stars';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const GetStarted = () => {
   const navigate = useNavigate();
