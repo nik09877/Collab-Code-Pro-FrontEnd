@@ -1,12 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { initSocket } from '../../socket/socket';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import ContestSpinner from '../../components/Spinners/ContestSpinner/ContestSpinner';
-import { useSnackbar } from 'notistack';
-import { socketActions } from '../../socket/socketActions';
 import { useSelector, useDispatch } from 'react-redux';
 import { notifyOutputSuccess, notifyOutputError } from '../../store/toolsSlice';
+
+import { initSocket } from '../../socket/socket';
+import { socketActions } from '../../socket/socketActions';
+
+import ContestSpinner from '../../components/Spinners/ContestSpinner/ContestSpinner';
 import Toolbar from '../../components/Toolbar/Toolbar';
+import Problem from '../../components/Problem/Problem';
+import Snacker from '../../components/Snacker/Snacker';
+
+import { ReflexContainer, ReflexSplitter, ReflexElement } from 'react-reflex';
+import 'react-reflex/styles.css';
+import { useSnackbar } from 'notistack';
+import Editor from '../../components/Editor/Editor';
 
 const CodeEditorPage = () => {
   const [joined, setJoined] = useState(false);
@@ -18,7 +26,7 @@ const CodeEditorPage = () => {
   const socketRef = useRef(null);
   const navigate = useNavigate();
   const { roomId } = useParams();
-  const [searchParams, _] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const userName = searchParams.get('userName');
 
   const output_success = useSelector((state) => state.tools.output_success);
@@ -76,7 +84,116 @@ const CodeEditorPage = () => {
     }
   }, [output_success]);
 
-  return joined ? <Toolbar socketRef={socketRef} /> : <ContestSpinner />;
+  return joined ? (
+    <React.Fragment>
+      <Toolbar socketRef={socketRef} />
+      <div style={{ height: '85vh', overflowY: 'hidden' }}>
+        <ReflexContainer orientation='vertical'>
+          <ReflexElement
+            minSize={0}
+            maxSize={900}
+            size={400}
+            style={{ overflowX: 'hidden' }}
+          >
+            <Problem socketRef={socketRef} />
+          </ReflexElement>
+
+          <ReflexSplitter
+            className='reflex-thin'
+            style={{
+              background: '#1f273d',
+              opacity: '1',
+              border: '0.3px',
+            }}
+          />
+
+          <ReflexElement orientation='horizontol' maxSize={1900} minSize={400}>
+            <ReflexContainer>
+              <ReflexElement
+                minSize={100}
+                maxSize={1600}
+                style={{ display: 'flex' }}
+              >
+                <Editor socketRef={socketRef} />
+              </ReflexElement>
+              <ReflexSplitter
+                className='reflex-thin'
+                style={{
+                  backgroundColor: '#1f273d',
+                  opacity: '1',
+                  border: '0.3px',
+                }}
+              />
+              <ReflexElement
+                minSize={10}
+                maxSize={300}
+                size={200}
+                style={{ overflow: 'hidden' }}
+              >
+                Input and Output
+                {/*<IO socket={socket} />*/}
+              </ReflexElement>
+            </ReflexContainer>
+          </ReflexElement>
+
+          <ReflexSplitter
+            className='reflex-thin'
+            style={{
+              backgroundColor: '#1f273d',
+              opacity: '1',
+              border: '0.3px',
+            }}
+          />
+
+          <ReflexElement
+            minSize={8}
+            maxSize={250}
+            size={250}
+            style={{ overflow: 'hidden' }}
+          >
+            CHAT
+            {/*<Chat socket={socket} />*/}
+          </ReflexElement>
+        </ReflexContainer>
+
+        <Snacker
+          open={output_error}
+          vertical='top'
+          horizontal='center'
+          onClose={() => dispatch(notifyOutputError(false))}
+          message='Something Went Wrong!'
+          severity='error'
+        />
+
+        <Snacker
+          open={startMsgSnackbar}
+          timer={6000}
+          vertical='top'
+          horizontal='center'
+          message='Share URL of this page to collaborate'
+          severity='info'
+          onClose={() => {
+            setStartMsgSnackbar(false);
+            setResizeEditorNotify((state) => state + 1);
+          }}
+        />
+
+        <Snacker
+          open={resizeEditorNotify === 2}
+          timer={6000}
+          vertical='top'
+          horizontal='center'
+          message='You can also resize your editor by dragging the splitter'
+          severity='info'
+          onClose={() => {
+            setResizeEditorNotify(3);
+          }}
+        />
+      </div>
+    </React.Fragment>
+  ) : (
+    <ContestSpinner />
+  );
 };
 
 export default CodeEditorPage;

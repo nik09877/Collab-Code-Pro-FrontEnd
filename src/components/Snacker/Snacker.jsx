@@ -8,10 +8,14 @@ import { AlertTitle, Alert, Snackbar } from '@mui/material';
 //Messaage Pop Up
 const Snacker = (props) => {
   const { timer = 3000, message, severity, open } = props;
+  const position = {
+    vertical: props.vertical ? props.vertical : 'bottom',
+    horizontal: props.horizontal ? props.horizontal : 'left',
+  };
 
   return (
     <Snackbar
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      anchorOrigin={position}
       open={open}
       autoHideDuration={timer}
       onClose={props.onClose}

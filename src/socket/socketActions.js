@@ -21,4 +21,5 @@ export const socketActions = {
 
   //FETCHING PROBLEMS
   CODEFORCES_PROBLEM: 'codeforces-problem',
+  PROBLEM: 'problem',
 };

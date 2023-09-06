@@ -12,7 +12,7 @@ import {
 //TODO I am doing this my way so if Something happens change it
 const Leave = ({ socketRef }) => {
   const { roomId } = useParams();
-  const [searchParams, _] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const userName = searchParams.get('userName');
   const location = useLocation();
   const navigate = useNavigate();

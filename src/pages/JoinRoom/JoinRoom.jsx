@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Styles from './JoinRoom.module.css';
 import Stars from '../../components/Stars/Stars';
 import Back from '../../components/Back/Back';
@@ -13,7 +13,7 @@ const JoinRoom = () => {
   const [userName, setUserName] = useState('');
   const [roomId, setRoomId] = useState('');
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const roomType = searchParams.get('type');
 
   const navigate = useNavigate();
