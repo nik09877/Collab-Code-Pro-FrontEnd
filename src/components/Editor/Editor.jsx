@@ -50,7 +50,7 @@ const Editor = ({ socketRef }) => {
       if (tools.nowCompile === true && tools.isLoading === false) {
         dispatch(setOutput(''));
         dispatch(setLoading());
-        socketRef.current.emit(socketActions.Compile_ON, {
+        socketRef.current.emit(socketActions.COMPILE_ON, {
           language: tools.language,
           code: tools.code,
           input: tools.input,
@@ -73,10 +73,12 @@ const Editor = ({ socketRef }) => {
         //syncs the ydoc throught WebRTC connection
         provider = new WebrtcProvider(roomId.trim().toLowerCase(), ydoc, {
           signaling: [
-            'wss://signaling.yjs.dev',
-            'wss://y-webrtc-signaling-eu.herokuapp.com',
-            'wss://y-webrtc-signaling-us.herokuapp.com',
-            'wss://y-webrtc-ckynwnzncc.now.sh',
+            process.env.REACT_APP_SIGNALING_SERVER_URL,
+            // 'ws://localhost:4444',
+            // 'wss://signaling.yjs.dev',
+            // 'wss://y-webrtc-signaling-eu.herokuapp.com',
+            // 'wss://y-webrtc-signaling-us.herokuapp.com',
+            // 'wss://y-webrtc-ckynwnzncc.now.sh',
           ],
           password: null,
         });

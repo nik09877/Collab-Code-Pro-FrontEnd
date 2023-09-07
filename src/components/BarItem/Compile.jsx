@@ -5,12 +5,12 @@ import { setCompileOn } from '../../store/toolsSlice';
 import classes from './tools.module.css';
 
 const Compile = () => {
-  const isCompiling = useSelector((state) => state.tools.nowCompile);
+  const nowCompile = useSelector((state) => state.tools.nowCompile);
   const dispatch = useDispatch();
 
   return (
     <Box
-      disabled={isCompiling}
+      disabled={nowCompile}
       onClick={() => dispatch(setCompileOn())}
       className={classes.navButton}
     >

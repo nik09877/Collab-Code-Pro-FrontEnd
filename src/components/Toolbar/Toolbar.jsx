@@ -39,7 +39,7 @@ const Toolbar = ({ socketRef }) => {
         </Grid>
         <Grid className={classes.toolsGrid}>
           <Compile />
-          <GraphButton />
+          {/*<GraphButton />*/}
           <Leave socketRef={socketRef} />
           <FileHandling />
         </Grid>

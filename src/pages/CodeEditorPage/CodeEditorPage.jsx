@@ -10,6 +10,8 @@ import ContestSpinner from '../../components/Spinners/ContestSpinner/ContestSpin
 import Toolbar from '../../components/Toolbar/Toolbar';
 import Problem from '../../components/Problem/Problem';
 import Snacker from '../../components/Snacker/Snacker';
+import IO from '../../components/IO/IO';
+import Chat from '../../components/Chat/ChatTabs';
 
 import { ReflexContainer, ReflexSplitter, ReflexElement } from 'react-reflex';
 import 'react-reflex/styles.css';
@@ -21,7 +23,7 @@ const CodeEditorPage = () => {
   const [startMsgSnackbar, setStartMsgSnackbar] = useState(true);
   const [resizeEditorNotify, setResizeEditorNotify] = useState(1);
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   const socketRef = useRef(null);
   const navigate = useNavigate();
@@ -130,8 +132,7 @@ const CodeEditorPage = () => {
                 size={200}
                 style={{ overflow: 'hidden' }}
               >
-                Input and Output
-                {/*<IO socket={socket} />*/}
+                <IO socketRef={socketRef} />
               </ReflexElement>
             </ReflexContainer>
           </ReflexElement>
@@ -151,8 +152,7 @@ const CodeEditorPage = () => {
             size={250}
             style={{ overflow: 'hidden' }}
           >
-            CHAT
-            {/*<Chat socket={socket} />*/}
+            <Chat socketRef={socketRef} />
           </ReflexElement>
         </ReflexContainer>
 
@@ -167,7 +167,7 @@ const CodeEditorPage = () => {
 
         <Snacker
           open={startMsgSnackbar}
-          timer={6000}
+          timer={4000}
           vertical='top'
           horizontal='center'
           message='Share URL of this page to collaborate'
@@ -180,7 +180,7 @@ const CodeEditorPage = () => {
 
         <Snacker
           open={resizeEditorNotify === 2}
-          timer={6000}
+          timer={4000}
           vertical='top'
           horizontal='center'
           message='You can also resize your editor by dragging the splitter'

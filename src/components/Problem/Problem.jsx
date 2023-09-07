@@ -12,12 +12,16 @@ const Problem = ({ socketRef }) => {
 
   //Listen for problem Fetched event
   useEffect(() => {
+    socketRef.current.on(socketActions.CODEFORCES_PROBLEM, () => {
+      setLoading(true);
+    });
     socketRef.current.on(socketActions.PROBLEM, (problem) => {
       problemRef.current.innerHTML = problem;
       setLoading(false);
     });
 
     return () => {
+      socketRef.current.off(socketActions.CODEFORCES_PROBLEM);
       socketRef.current.off(socketActions.PROBLEM);
     };
   }, []);
@@ -83,8 +87,10 @@ const Problem = ({ socketRef }) => {
             }}
           >
             copy url of any problem from the following websites: <br />
-            codeforces ,codechef , geeksforgeeks , atcoder , cses, codeDrills
-            paste the url in place of Problem Link and click fetch. same problem
+            codeforces ,codechef , geeksforgeeks , atcoder , cses, codeDrills.
+            <br />
+            <br />
+            Paste the url in place of Problem Link and click fetch. same problem
             will also be fetched on your collaborator's problem section
             <br />
             <br />
