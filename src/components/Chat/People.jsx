@@ -45,7 +45,6 @@ const People = ({ persons, you }) => {
             }}
           >
             {persons.map((person, i) => {
-              console.log(you, person);
               if (!person || !person.username) return null;
               return (
                 <div

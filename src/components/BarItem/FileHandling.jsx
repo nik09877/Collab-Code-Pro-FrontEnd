@@ -26,7 +26,6 @@ const FileHandling = () => {
   const TextFile = () => {
     const element = document.createElement('a');
     const file = new Blob([code], { type: 'text/plain' });
-    // console.log(code);
     element.href = URL.createObjectURL(file);
     element.download = 'CollabCodePro.txt';
     document.body.appendChild(element); // Required for this to work in FireFox
