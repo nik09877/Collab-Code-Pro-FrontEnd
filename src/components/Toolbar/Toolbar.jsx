@@ -11,6 +11,7 @@ import ThemePicker from '../BarItem/ThemePicker';
 import LanguagePicker from '../BarItem/LanguagePicker';
 
 import classes from './Toolbar.module.css';
+import CopyRoomBtn from '../BarItem/CopyRoomBtn';
 
 const Toolbar = ({ socketRef }) => {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ const Toolbar = ({ socketRef }) => {
         </Grid>
         <Grid className={classes.toolsGrid}>
           <Compile />
+          <CopyRoomBtn />
           {/*<GraphButton />*/}
           <Leave socketRef={socketRef} />
           <FileHandling />

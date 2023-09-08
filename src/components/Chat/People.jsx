@@ -63,9 +63,7 @@ const People = ({ persons, you }) => {
                     <p
                       className={`${classes.messageText} ${classes.colorLight} ${classes.username}`}
                     >
-                      {person.username.length <= 3
-                        ? person.username
-                        : person.username.slice(0, 3)}
+                      {person.username}
                     </p>
                   </div>
                   {you.trim().toLowerCase() ===
