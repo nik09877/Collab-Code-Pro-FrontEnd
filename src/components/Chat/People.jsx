@@ -50,7 +50,7 @@ const People = ({ persons, you }) => {
                 <div
                   title={person.username}
                   className={`${classes.messageContainer} ${classes.justifyStart}`}
-                  style={{ width: '270px', marginBottom: '10px' }}
+                  style={{ width: '500px', marginBottom: '10px' }}
                   key={i}
                 >
                   <div

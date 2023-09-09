@@ -30,7 +30,7 @@ const GetStarted = () => {
             display: 'inline-block',
             width: '40%',
             minWidth: '300px',
-            fontSize: '50px',
+            fontSize: '90px',
           }}
         >
           Collab-Code-Pro

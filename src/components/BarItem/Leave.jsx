@@ -8,8 +8,8 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
+import { socketActions } from '../../socket/socketActions';
 
-//TODO I am doing this my way so if Something happens change it
 const Leave = ({ socketRef }) => {
   const { roomId } = useParams();
   const [searchParams] = useSearchParams();
@@ -27,11 +27,17 @@ const Leave = ({ socketRef }) => {
     });
   };
   const leaveRoomHandler = () => {
-    if (!window.confirm('Are you sure you want to leave this room')) {
+    if (!window.confirm('Are you sure you want to leave this room ?')) {
       return;
     }
     if (location.pathname === `/contest/${roomId}`) {
-      //TODO implement contest Logic
+      console.log('leaving contest');
+      socketRef.current.emit(socketActions.CONTEST_UPDATE, { roomId });
+      socketRef.current.emit(socketActions.LEAVE_CONTEST, {
+        name: userName,
+        roomId,
+      });
+      handleHomeNav('You Left the Contest');
     } else {
       handleHomeNav('You Left the Room');
     }

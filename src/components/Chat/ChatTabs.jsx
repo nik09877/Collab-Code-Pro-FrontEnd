@@ -40,7 +40,6 @@ export default function ChatPanel({ socketRef }) {
 
   const { enqueueSnackbar } = useSnackbar();
 
-  //TODO CONTEST IMPLEMENTATION
   //setting the user name
   //   useEffect(() => {
   //     if (location.pathname === `/contest/${roomId}`) {

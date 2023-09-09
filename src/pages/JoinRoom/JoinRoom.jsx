@@ -60,7 +60,9 @@ const JoinRoom = () => {
         <div className={Styles.inputContainer}>
           <div>
             <InputLabel style={{ color: '#fff', fontWeight: 'bold' }}>
-              * What do you want to be called ?
+              {roomType === 'contest'
+                ? '* Enter Your Codeforces Handle'
+                : '* What do you want to be called ?'}
             </InputLabel>
             <input
               type='text'
