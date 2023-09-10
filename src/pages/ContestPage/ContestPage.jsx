@@ -12,8 +12,9 @@ import Chat from '../../components/Chat/ChatTabs';
 import Rules from '../../components/Rules/Rules';
 import IO from '../../components/IO/IO';
 import Toolbar from '../../components/Toolbar/Toolbar';
-import Contest from '../../components/Contest/Contest';
+import ContestSidePanel from '../../components/Contest/Contest';
 import { ReflexContainer, ReflexSplitter, ReflexElement } from 'react-reflex';
+import ContestEditor from '../../components/Contest/ContestEditor/ContestEditor';
 
 const ContestPage = () => {
   const [joined, setJoined] = useState(false);
@@ -59,12 +60,12 @@ const ContestPage = () => {
         user,
         ({ error, contest }) => {
           if (error) {
-            handleErrors({ error }, error);
+            return handleErrors({ error }, error);
           }
           dispatch(updateContest(contest));
           setJoined(true);
 
-          if (contest.EndTime) {
+          if (contest?.EndTime) {
             const now = new Date().getTime();
             dispatch(updateContestEnded(contest.EndTime <= now));
           }
@@ -101,7 +102,7 @@ const ContestPage = () => {
                 boxShadow: '0 5px 15px 0px rgba(0,0,0,0.6)',
               }}
             >
-              <Contest socketRef={socketRef} />
+              <ContestSidePanel socketRef={socketRef} />
             </div>
           </ReflexElement>
 
@@ -122,7 +123,7 @@ const ContestPage = () => {
                   maxSize={1600}
                   style={{ overflow: 'hidden' }}
                 >
-                  {/* <Editor socketRef={socketRef} />*/}
+                  <ContestEditor socketRef={socketRef} />
                 </ReflexElement>
                 <ReflexSplitter
                   className='reflex-thin'

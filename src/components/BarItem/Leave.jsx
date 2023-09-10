@@ -31,8 +31,9 @@ const Leave = ({ socketRef }) => {
       return;
     }
     if (location.pathname === `/contest/${roomId}`) {
-      console.log('leaving contest');
-      socketRef.current.emit(socketActions.CONTEST_UPDATE, { roomId });
+      // console.log('leaving contest');
+      //FIXME UNCOMMENT IF NOT WORKING
+      // socketRef.current.emit(socketActions.CONTEST_UPDATE, { roomId });
       socketRef.current.emit(socketActions.LEAVE_CONTEST, {
         name: userName,
         roomId,

@@ -38,7 +38,7 @@ export const contestSlice = createSlice({
     },
     updateContestEnded: (state, action) => {
       state.contestEnded = action.payload;
-      state.showContestEndedModal = action.payload;
+      // state.showContestEndedModal = action.payload;
     },
     showContestEndedModal: (state, action) => {
       state.showContestEndedModal = true;
