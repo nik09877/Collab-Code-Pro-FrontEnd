@@ -53,16 +53,12 @@ const Home = () => {
           clicked={() => handleCreateRoomNav('code-Editor')}
         ></Button>
         <Button
-          name='Code-Editor'
-          clicked={() => handleCreateRoomNav('code-Editor')}
+          name='Lockout-Championship'
+          clicked={() => handleCreateRoomNav('contest')}
         ></Button>
         <Button
-          name='Code-Editor'
-          clicked={() => handleCreateRoomNav('code-Editor')}
-        ></Button>
-        <Button
-          name='Code-Editor'
-          clicked={() => handleCreateRoomNav('code-Editor')}
+          name='Collab-Draw'
+          clicked={() => handleCreateRoomNav('collab-draw')}
         ></Button>
       </div>
       <Snacker

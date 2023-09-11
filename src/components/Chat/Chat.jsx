@@ -17,29 +17,17 @@ const Chat = ({ socketRef, messages }) => {
   const [searchParams] = useSearchParams();
   const userName = searchParams.get('userName');
 
-  //TODO UNCOMMENT IF IT DOESN'T WORK
-  //setting the names according to the routes
-  useEffect(() => {
-    if (location.pathname === `/contest/${roomId}`) {
-      //TODO CONTEST USER NAME
-      //   setName(auth.user.CodeforcesHandle);
-    } else {
-      //   setName(searchParams.get('name'));
-    }
-  }, []);
-
   //Emiting the messages to other users via socket
   const submitHandler = (e) => {
     e.preventDefault();
     const finalValue = inputRef.current.value.trim();
     if (finalValue) {
-      //TODO CONTEST IMPLEMENTATION
       if (location.pathname === `/contest/${roomId}`) {
-        // socketRef.current.emit('Contest-Msg', {
-        //   message: finalValue,
-        //   room: searchParams.get('room'),
-        //   name: auth.user.CodeforcesHandle,
-        // });
+        socketRef.current.emit(socketActions.CONTEST_MSG, {
+          message: finalValue,
+          room: roomId,
+          name: userName,
+        });
       } else {
         socketRef.current.emit(socketActions.CLIENT_MSG, {
           message: finalValue,

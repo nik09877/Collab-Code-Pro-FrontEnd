@@ -45,13 +45,12 @@ const People = ({ persons, you }) => {
             }}
           >
             {persons.map((person, i) => {
-              console.log(you, person);
               if (!person || !person.username) return null;
               return (
                 <div
                   title={person.username}
                   className={`${classes.messageContainer} ${classes.justifyStart}`}
-                  style={{ width: '270px', marginBottom: '10px' }}
+                  style={{ width: '500px', marginBottom: '10px' }}
                   key={i}
                 >
                   <div

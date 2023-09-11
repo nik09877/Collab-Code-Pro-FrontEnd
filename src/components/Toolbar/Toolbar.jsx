@@ -38,7 +38,7 @@ const Toolbar = ({ socketRef }) => {
           <ThemePicker />
           <FontSize />
         </Grid>
-        <Grid className={classes.toolsGrid}>
+        <Grid className={classes.toolsGrid} style={{ paddingRight: '20px' }}>
           <Compile />
           <CopyRoomBtn />
           {/*<GraphButton />*/}

@@ -37,7 +37,6 @@ const CodeEditorPage = () => {
 
   //HANDLERS
   const handleErrors = (_, msg) => {
-    // console.log('socket error', e);
     navigate('/home', {
       state: { err: `${msg}` },
       replace: true,

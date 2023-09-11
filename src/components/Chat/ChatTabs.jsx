@@ -40,7 +40,6 @@ export default function ChatPanel({ socketRef }) {
 
   const { enqueueSnackbar } = useSnackbar();
 
-  //TODO UNCOMMENT IF IT DOESN'T WORK
   //setting the user name
   //   useEffect(() => {
   //     if (location.pathname === `/contest/${roomId}`) {
@@ -55,6 +54,7 @@ export default function ChatPanel({ socketRef }) {
   //Listening to the messages from other users
   useEffect(() => {
     socketRef.current.on(socketActions.SERVER_MSG, (msg) => {
+      // console.log('receiving messages from server');
       setMessages([...messages, msg]);
     });
     return () => {
@@ -66,6 +66,7 @@ export default function ChatPanel({ socketRef }) {
   //the current user about the entering and leaving
   useEffect(() => {
     socketRef.current.on(socketActions.PEOPLE_IN_ROOM, (data) => {
+      // console.log('received Room info!');
       setPersons(data.teamMembers);
       if (data.userJoin) {
         if (
