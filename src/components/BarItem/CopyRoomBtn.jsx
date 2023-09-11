@@ -15,10 +15,12 @@ const CopyRoomBtn = () => {
       await navigator.clipboard.writeText(roomId);
       enqueueSnackbar('Room Id Copied Succesfully !', {
         variant: 'success',
+        autoHideDuration: 2000,
       });
     } catch (err) {
       enqueueSnackbar('Could not copy the Room ID', {
         variant: 'error',
+        autoHideDuration: 2000,
       });
     }
   };

@@ -80,6 +80,7 @@ const CodeEditorPage = () => {
     if (output_success) {
       enqueueSnackbar('Code Compiled Succesfully !', {
         variant: 'success',
+        autoHideDuration: 2000,
       });
       dispatch(notifyOutputSuccess(false));
     }

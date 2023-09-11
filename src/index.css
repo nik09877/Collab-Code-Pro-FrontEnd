@@ -9,3 +9,37 @@
 body {
   color: white;
 }
+
+.menu_container {
+  position: absolute;
+  top: 0;
+  width: 450px;
+  left: calc(50% - 175px); /*50% - (350/2) px to center it*/
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: #eee;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.menu_button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s;
+  background-color: #fff1dc;
+}
+
+.menu_button:hover {
+  background-color: #e8d5c4;
+}
+.menu_button_active {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background-color: #e8d5c4;
+}

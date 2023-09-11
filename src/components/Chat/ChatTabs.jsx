@@ -75,10 +75,12 @@ export default function ChatPanel({ socketRef }) {
         )
           enqueueSnackbar(`${data.userJoin} joined this room`, {
             variant: 'info',
+            autoHideDuration: 2000,
           });
       } else if (data.userLeft) {
         enqueueSnackbar(`${data.userLeft} left this room`, {
           variant: 'warning',
+          autoHideDuration: 2000,
         });
       }
     });
