@@ -104,7 +104,8 @@ const Editor = ({ socketRef }) => {
           yUndoManager,
         });
       } catch (err) {
-        alert('error in collaborating try refreshing or come back later !');
+        // alert('error in collaborating try refreshing or come back later !');
+        alert('Error in Collaborating! Signalling Server is down!');
       }
       return () => {
         //Releasing the resources used and destroying the document
