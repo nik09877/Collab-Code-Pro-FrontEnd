@@ -148,7 +148,7 @@ const CodeEditorPage = () => {
 
           <ReflexElement
             minSize={8}
-            maxSize={250}
+            maxSize={450}
             size={250}
             style={{ overflow: 'hidden' }}
           >
