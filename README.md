@@ -21,8 +21,8 @@
 1. Collaborate With other users
 2. Fetch Problems in the side panel
 3. Provide input and Compile Code
-4. upload and download code
-5. set custom theme, Language and Font size
+4. Upload and download code
+5. Set custom theme, Language and Font size
 6. Copy RoomId
 7. Chat With Friends
 
