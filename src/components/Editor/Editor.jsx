@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setLoading,
@@ -12,12 +11,8 @@ import languageMapper from '../../utils/languageMapper';
 import Modal from '../Modal/Modal';
 import Graph from '../Graph/Graph';
 
-// import RandomColor from 'randomcolor';
 import './EditorAddons';
-// import { CodemirrorBinding } from 'y-codemirror';
 import { UnControlled as CodeMirrorEditor } from 'react-codemirror2';
-import * as Y from 'yjs';
-// import { WebrtcProvider } from 'y-webrtc';
 
 import './Editor.css';
 import { socketActions } from '../../socket/socketActions';
@@ -27,22 +22,21 @@ const Editor = ({ socketRef }) => {
   const [editorRef, setEditorRef] = useState(null);
   const dispatch = useDispatch();
 
-  // const { roomId } = useParams();
-  const [searchParams] = useSearchParams();
-  // const userName = searchParams.get('userName');
-
   //Setting the editor reference when editor gets mounted
   const handleEditorDidMount = (editor) => {
     setEditorRef(editor);
+  };
+
+  const handleCodeEditorValueChange = async (value) => {
+    if (tools.code === value) return;
+    dispatch(setCode(value));
+    socketRef.current.emit(socketActions.CODE_CHANGE, { code: value });
   };
 
   //Setting the uploaded code
   useEffect(() => {
     if (tools.uploaded_code && editorRef) {
       editorRef.setValue(tools.uploaded_code);
-      // socketRef.current.emit(socketActions.CODE_CHANGE, {
-      //   code: tools.uploaded_code,
-      // });
       dispatch(setUploadedCode(''));
     }
   }, [tools.uploaded_code]);
@@ -52,7 +46,6 @@ const Editor = ({ socketRef }) => {
     if (editorRef) {
       socketRef.current.on(socketActions.CODE_CHANGE, ({ code }) => {
         if (tools.code !== code) editorRef.setValue(code);
-        // dispatch(setCode(code));
       });
     }
     return () => {
@@ -89,61 +82,6 @@ const Editor = ({ socketRef }) => {
     init();
   }, [tools.nowCompile]);
 
-  //Yjs based real-time connection and collaboration
-  // useEffect(() => {
-  //   //Collboration and connection starts after the editor is mounted
-  //   if (editorRef) {
-  //     //Yjs document that holds shared data
-  //     const ydoc = new Y.Doc();
-
-  //     let provider = null;
-  //     try {
-  //       //syncs the ydoc throught WebRTC connection
-  //       provider = new WebrtcProvider(roomId.trim().toLowerCase(), ydoc, {
-  //         signaling: [
-  //           process.env.REACT_APP_SIGNALING_SERVER_URL,
-  //           // 'ws://localhost:4444',
-  //           // 'wss://signaling.yjs.dev',
-  //           // 'wss://y-webrtc-signaling-eu.herokuapp.com',
-  //           // 'wss://y-webrtc-signaling-us.herokuapp.com',
-  //           // 'wss://y-webrtc-ckynwnzncc.now.sh',
-  //         ],
-  //         password: null,
-  //       });
-
-  //       //Define a shared text type on the document
-  //       const yText = ydoc.getText('codemirror');
-
-  //       //Undomanager used for stacking the undo and redo operation for yjs
-  //       const yUndoManager = new Y.UndoManager(yText);
-
-  //       const awareness = provider.awareness;
-
-  //       const color = RandomColor();
-
-  //       //Awareness protocol is used to propagate your information (cursor position , name , etc)
-  //       awareness.setLocalStateField('user', {
-  //         name: userName,
-  //         color: color,
-  //       });
-
-  //       //Binds the Codemirror editor to Yjs text type
-  //       const getBinding = new CodemirrorBinding(yText, editorRef, awareness, {
-  //         yUndoManager,
-  //       });
-  //     } catch (err) {
-  //       alert('error in collaborating try refreshing or come back later !');
-  //     }
-  //     return () => {
-  //       //Releasing the resources used and destroying the document
-  //       if (provider) {
-  //         provider.disconnect();
-  //         ydoc.destroy();
-  //       }
-  //     };
-  //   }
-  // }, [editorRef]);
-
   return (
     <div
       style={{
@@ -155,11 +93,7 @@ const Editor = ({ socketRef }) => {
       }}
     >
       <CodeMirrorEditor
-        onChange={(editor, data, value) => {
-          if (tools.code === value) return;
-          dispatch(setCode(value));
-          socketRef.current.emit(socketActions.CODE_CHANGE, { code: value });
-        }}
+        onChange={(editor, data, value) => handleCodeEditorValueChange(value)}
         autoScroll
         options={{
           mode: languageMapper(tools.language),
