@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Collab Code Pro
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Home
 
-## Available Scripts
+![Home Page Screenshot](<./collab-code-pro-screenshots/Screenshot%20(88).png>)
 
-In the project directory, you can run:
+## Join Room
 
-### `npm start`
+#### For Code Editor
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Join Room Screenshot](<./collab-code-pro-screenshots/Screenshot%20(91).png>)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### For Lockout Championship
 
-### `npm test`
+![Join Room Screenshot](<./collab-code-pro-screenshots/Screenshot%20(90).png>)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Code Editor
 
-### `npm run build`
+#### Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Collaborate With other users
+2. Fetch Problems in the side panel
+3. Provide input and Compile Code
+4. upload and download code
+5. set custom theme, Language and Font size
+6. Copy RoomId
+7. Chat With Friends
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Code Editor GIF](./collab-code-pro-screenshots/Recording%202023-09-22%20160821.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Code Editor](<./collab-code-pro-screenshots/Screenshot%20(84).png>)
 
-### `npm run eject`
+## Lockout Championship
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Features
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Select Difficulty Range
+2. Select Problem Tags
+3. Check Leaderboard
+4. And all the other features provided in the Code Editor
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Championship Page](<./collab-code-pro-screenshots/Screenshot%20(85).png>)
+![Championship Page](./collab-code-pro-screenshots/Screenshot%202023-09-22%20162729.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Collab Draw
 
-## Learn More
+#### Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Draw Rectangles
+2. Draw Lines
+3. Use Pencil
+4. Write Texts
+5. Move Elements
+6. Copy RoomId
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![collab-draw](<./collab-code-pro-screenshots/Screenshot%20(87).png>)
