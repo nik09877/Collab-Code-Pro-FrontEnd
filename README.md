@@ -36,8 +36,9 @@
 
 1. Select Difficulty Range
 2. Select Problem Tags
-3. Check Leaderboard
-4. And all the other features provided in the Code Editor
+3. Set Duration of the Contest
+4. Check Leaderboard
+5. And all the other features provided in the Code Editor
 
 ![Championship Page](<./collab-code-pro-screenshots/Screenshot%20(85).png>)
 ![Championship Page](./collab-code-pro-screenshots/Screenshot%202023-09-22%20162729.png)
