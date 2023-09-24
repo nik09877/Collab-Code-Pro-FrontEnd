@@ -16,11 +16,13 @@ import { UnControlled as CodeMirrorEditor } from 'react-codemirror2';
 
 import './Editor.css';
 import { socketActions } from '../../socket/socketActions';
+import { useParams } from 'react-router-dom';
 
 const Editor = ({ socketRef }) => {
   const tools = useSelector((state) => state.tools);
   const [editorRef, setEditorRef] = useState(null);
   const dispatch = useDispatch();
+  const { roomId } = useParams();
 
   //Setting the editor reference when editor gets mounted
   const handleEditorDidMount = (editor) => {
@@ -32,6 +34,10 @@ const Editor = ({ socketRef }) => {
     dispatch(setCode(value));
     socketRef.current.emit(socketActions.CODE_CHANGE, { code: value });
   };
+
+  useEffect(() => {
+    socketRef.current.emit(socketActions.CODE_SYNC, { roomId: roomId });
+  }, []);
 
   //Setting the uploaded code
   useEffect(() => {

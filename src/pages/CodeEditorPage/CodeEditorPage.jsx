@@ -64,7 +64,6 @@ const CodeEditorPage = () => {
           setJoined(true);
         }
       );
-      socketRef.current.emit(socketActions.CODE_SYNC, { roomId: roomId });
     };
 
     init();
