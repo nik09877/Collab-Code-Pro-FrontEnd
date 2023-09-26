@@ -12,7 +12,7 @@ import Modal from '../Modal/Modal';
 import Graph from '../Graph/Graph';
 
 import './EditorAddons';
-import { UnControlled as CodeMirrorEditor } from 'react-codemirror2';
+import { Controlled as CodeMirrorEditor } from 'react-codemirror2';
 
 import './Editor.css';
 import { socketActions } from '../../socket/socketActions';
@@ -29,12 +29,6 @@ const Editor = ({ socketRef }) => {
     setEditorRef(editor);
   };
 
-  const handleCodeEditorValueChange = async (value) => {
-    if (tools.code === value) return;
-    dispatch(setCode(value));
-    socketRef.current.emit(socketActions.CODE_CHANGE, { code: value });
-  };
-
   useEffect(() => {
     socketRef.current.emit(socketActions.CODE_SYNC, { roomId: roomId });
   }, []);
@@ -42,7 +36,9 @@ const Editor = ({ socketRef }) => {
   //Setting the uploaded code
   useEffect(() => {
     if (tools.uploaded_code && editorRef) {
-      editorRef.setValue(tools.uploaded_code);
+      const curCode = tools.uploaded_code;
+      dispatch(setCode(curCode));
+      socketRef.current.emit(socketActions.CODE_CHANGE, { code: curCode });
       dispatch(setUploadedCode(''));
     }
   }, [tools.uploaded_code]);
@@ -51,7 +47,7 @@ const Editor = ({ socketRef }) => {
   useEffect(() => {
     if (editorRef) {
       socketRef.current.on(socketActions.CODE_CHANGE, ({ code }) => {
-        if (tools.code !== code) editorRef.setValue(code);
+        dispatch(setCode(code));
       });
     }
     return () => {
@@ -62,7 +58,7 @@ const Editor = ({ socketRef }) => {
   useEffect(() => {
     if (editorRef) {
       socketRef.current.on(socketActions.CODE_SYNC, ({ code }) => {
-        if (tools.code !== code) editorRef.setValue(code);
+        dispatch(setCode(code));
       });
     }
 
@@ -86,7 +82,7 @@ const Editor = ({ socketRef }) => {
       }
     };
     init();
-  }, [tools.nowCompile]);
+  }, [tools.nowCompile, tools.isLoading]);
 
   return (
     <div
@@ -99,7 +95,12 @@ const Editor = ({ socketRef }) => {
       }}
     >
       <CodeMirrorEditor
-        onChange={(editor, data, value) => handleCodeEditorValueChange(value)}
+        value={tools.code}
+        onBeforeChange={(editor, data, value) => {
+          if (tools.code === value) return;
+          dispatch(setCode(value));
+          socketRef.current.emit(socketActions.CODE_CHANGE, { code: value });
+        }}
         autoScroll
         options={{
           mode: languageMapper(tools.language),
